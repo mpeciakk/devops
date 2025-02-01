@@ -15,11 +15,11 @@ spec:
       labels:
         app: wat
     spec:
+      imagePullSecrets:
+      - name: docker-cred
       containers:
       - name: wat-app
         image: harbor.peciak.xyz/mpeciak/wat:main
-        imagePullSecrets:
-        - name: docker-cred
         ports:
         - containerPort: 3000
         resources:
