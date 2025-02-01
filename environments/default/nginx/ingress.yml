@@ -1,24 +1,26 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: argocd-server
-  namespace: argocd
+  name: nginx
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-production
     kubernetes.io/ingress.class: traefik
+  labels:
+    app: nginx
 spec:
   rules:
-  - host: argocd.pollux.peciak.xyz
+  - host: nginx.pollux.peciak.xyz
     http:
       paths:
       - backend:
           service:
-            name: argocd-server
+            name: nginx
             port: 
               number: 80
         path: /
         pathType: Prefix  
+
   tls:
   - hosts:
-    - argocd.pollux.peciak.xyz
-    secretName: argocd-pollux-peciak-xyz-tls
+    - nginx.pollux.peciak.xyz
+    secretName: nginx-pollux-peciak-xyz-tls
