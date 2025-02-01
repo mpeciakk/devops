@@ -5,6 +5,7 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-production
     kubernetes.io/ingress.class: traefik
+    ingress.kubernetes.io/force-ssl-redirect: "true"
   labels:
     app: wat
 spec:
