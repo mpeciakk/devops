@@ -15,18 +15,11 @@ spec:
       labels:
         app: wat
     spec:
-      imagePullSecrets:
-      - name: docker-cred
       containers:
-      - name: wat-app
+      - name: wat-instance
         image: harbor.peciak.xyz/mpeciak/wat:main
         ports:
         - containerPort: 3000
-        resources:
-          requests:
-            memory: "16Mi" 
-            cpu: "50m"    # 500milliCPUs (1/2 CPU)
-          limits:
-            memory: "128Mi"
-            cpu: "100m"
+      imagePullSecrets:
+      - name: harbor-registry-secret
             
