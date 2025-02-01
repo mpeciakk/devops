@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: wat
+  namespace: argocd
+spec:
+  destination:
+    namespace: wat
+    server: https://kubernetes.default.svc 
+  project: default 
+  source: 
+    path: environments/default/wat
+    repoURL: https://github.com/mpeciakk/devops
+    targetRevision: main
+  syncPolicy: 
+    automated:
+      prune: true
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true

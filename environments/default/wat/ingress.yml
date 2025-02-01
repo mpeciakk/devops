@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: wat
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+    kubernetes.io/ingress.class: traefik
+  labels:
+    app: wat
+spec:
+  rules:
+  - host: wat.pollux.peciak.xyz
+    http:
+      paths:
+      - backend:
+          service:
+            name: wat
+            port: 
+              number: 80
+        path: /
+        pathType: Prefix  
+
+  tls:
+  - hosts:
+    - wat.pollux.peciak.xyz
+    secretName: wat-pollux-peciak-xyz-tls

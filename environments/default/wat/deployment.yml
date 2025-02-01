@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: wat
+  name: wat
+  labels:
+    app: wat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wat
+  template:
+    metadata:
+      labels:
+        app: wat
+    spec:
+      containers:
+      - name: wat-app
+        image: harbor.peciak.xyz/mpeciak/wat:main
+        ports:
+        - containerPort: 3000
+        resources:
+          requests:
+            memory: "16Mi" 
+            cpu: "50m"    # 500milliCPUs (1/2 CPU)
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
